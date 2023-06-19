@@ -1,0 +1,36 @@
+﻿@model AnalysisProgram.Models.SniperViewModel
+
+<h2>Formularz Snipera</h2>
+
+<!-- Rozpoczęcie formularza z użyciem metody POST -->
+@using (Html.BeginForm("SniperStatsCalculator", "KDACalculator", FormMethod.Post))
+{
+    <div>
+        <label>Zabójstwa:</label>
+        @Html.TextBoxFor(m => m.Kills)
+        @Html.ValidationMessageFor(m => m.Kills)
+    </div>
+    <div>
+        <label>Asysty:</label>
+        @Html.TextBoxFor(m => m.Assists)
+        @Html.ValidationMessageFor(m => m.Assists)
+    </div>
+    <div>
+        <label>Śmierci:</label>
+        @Html.TextBoxFor(m => m.Deads)
+        @Html.ValidationMessageFor(m => m.Deads)
+    </div>
+    <div>
+        <label>Sniper Weapon Kills:</label>
+        @Html.TextBoxFor(m => m.SniperWeaponKills)
+        @Html.ValidationMessageFor(m => m.SniperWeaponKills)
+    </div>
+    <div>
+        <label>No Scope Kills:</label>
+        @Html.TextBoxFor(m => m.NoScopeKills)
+        @Html.ValidationMessageFor(m => m.NoScopeKills)
+    </div>
+
+        <!-- Przycisk "Oblicz" do wysłania formularza -->
+    <input type="submit" value="Oblicz" class="btn btn-primary" />
+}

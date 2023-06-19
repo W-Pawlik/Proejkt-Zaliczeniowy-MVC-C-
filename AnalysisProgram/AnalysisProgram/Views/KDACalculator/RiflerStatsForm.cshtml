@@ -1,0 +1,36 @@
+﻿@model AnalysisProgram.Models.Rifler
+
+<h2>Formularz Riflera</h2>
+
+<!-- Rozpoczęcie formularza z użyciem metody POST -->
+@using (Html.BeginForm("RiflerStatsCalculator", "KDACalculator", FormMethod.Post))
+{
+    <div>
+        <label>Zabójstwa:</label>
+        @Html.TextBoxFor(m => m.Kills)
+        @Html.ValidationMessageFor(m => m.Kills)
+    </div>
+    <div>
+        <label>Asysty:</label>
+        @Html.TextBoxFor(m => m.Assists)
+        @Html.ValidationMessageFor(m => m.Assists)
+    </div>
+    <div>
+        <label>Śmierci:</label>
+        @Html.TextBoxFor(m => m.Deads)
+        @Html.ValidationMessageFor(m => m.Deads)
+    </div>
+    <div>
+        <label>Headshots:</label>
+        @Html.TextBoxFor(m => m.Headshots)
+        @Html.ValidationMessageFor(m => m.Headshots)
+    </div>
+    <div>
+        <label>Entry Frags:</label>
+        @Html.TextBoxFor(m => m.EntryFrags)
+        @Html.ValidationMessageFor(m => m.EntryFrags)
+        </div>
+    
+            <!-- Przycisk "Oblicz" do wysłania formularza -->
+    <input type="submit" value="Oblicz" class="btn btn-primary" />
+}

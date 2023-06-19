@@ -1,0 +1,89 @@
+﻿@model AnalysisProgram.Models.PlayerViewModel[]
+
+<h2>Create Players</h2>
+
+@using (Html.BeginForm("Player", "Player", FormMethod.Post))
+{
+    if (Model != null && Model.Length > 0)
+    {
+          <!-- Wyświetlanie formularza dla istniejących graczy -->
+        for (int i = 0; i < Model.Length; i++)
+        {
+            <h3>Player @(i + 1)</h3>
+
+            @Html.LabelFor(m => Model[i].Name)
+            @Html.TextBoxFor(m => Model[i].Name)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Surname)
+            @Html.TextBoxFor(m => Model[i].Surname)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Nick)
+            @Html.TextBoxFor(m => Model[i].Nick)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Age)
+            @Html.TextBoxFor(m => Model[i].Age)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Price)
+            @Html.TextBoxFor(m => Model[i].Price)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Kills)
+            @Html.TextBoxFor(m => Model[i].Kills)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Assists)
+            @Html.TextBoxFor(m => Model[i].Assists)
+            <br />
+
+            @Html.LabelFor(m => Model[i].Deads)
+            @Html.TextBoxFor(m => Model[i].Deads)
+            <br />
+        }
+    }
+    else
+    {
+                 <!-- Wyświetlanie formularza dla dwóch domyślnych graczy -->
+        for (int i = 0; i < 2; i++)
+        {
+            <h3>Player @(i + 1)</h3>
+
+            @Html.LabelFor(m => m[i].Name)
+            @Html.TextBoxFor(m => m[i].Name)
+            <br />
+
+            @Html.LabelFor(m => m[i].Surname)
+            @Html.TextBoxFor(m => m[i].Surname)
+            <br />
+
+            @Html.LabelFor(m => m[i].Nick)
+            @Html.TextBoxFor(m => m[i].Nick)
+            <br />
+
+            @Html.LabelFor(m => m[i].Age)
+            @Html.TextBoxFor(m => m[i].Age)
+            <br />
+
+            @Html.LabelFor(m => m[i].Price)
+            @Html.TextBoxFor(m => m[i].Price)
+            <br />
+
+            @Html.LabelFor(m => m[i].Kills)
+            @Html.TextBoxFor(m => m[i].Kills)
+            <br />
+
+            @Html.LabelFor(m => m[i].Assists)
+            @Html.TextBoxFor(m => m[i].Assists)
+            <br />
+
+            @Html.LabelFor(m => m[i].Deads)
+            @Html.TextBoxFor(m => m[i].Deads)
+            <br />
+        }
+    }
+
+    <input type="submit" value="Create" />
+}

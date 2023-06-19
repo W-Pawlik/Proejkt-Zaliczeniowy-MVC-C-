@@ -1,0 +1,26 @@
+﻿
+<!-- Wyświetlanie statystyk Snipera -->
+<h2>Statystyki snipera:</h2>
+<p>KDA gracza: @ViewBag.KDA</p>
+<p>KDRatio gracza: @ViewBag.KDRATIO</p>
+
+<!-- Warunek sprawdzający dostępność danych dotyczących celnych strzałów ze snajperki -->
+@if (ViewBag.SNIPERWEAPONKILLS == "Brak danych")
+{
+    <p>Brak danych dotyczących celnych strzałów ze snajperki.</p>
+}
+else
+{
+    <p>Procent zabójstw ze snajperki: @ViewBag.SNIPERWEAPONKILLS %</p>
+}
+
+<!-- Warunek sprawdzający dostępność danych dotyczącychzabójstw bez celownika -->
+@if (ViewBag.NOSCOPEKILLS == "Brak danych")
+{
+    <p>Brak danych dotyczących zabójstw bez celownika</p>
+}
+else
+{
+    <p>Procent zabójstw bez celownika: @ViewBag.NOSCOPEKILLS %</p>
+}
+

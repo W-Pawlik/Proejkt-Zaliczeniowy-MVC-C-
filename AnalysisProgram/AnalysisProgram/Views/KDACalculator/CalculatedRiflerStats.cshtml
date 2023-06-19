@@ -1,0 +1,25 @@
+﻿
+<!--Wyświetlanie statystyk Riflera -->
+<h2>Statystyki RIflera:</h2>
+<p>KDA gracza: @ViewBag.KDA</p>
+<p>KDRatio gracza: @ViewBag.KDRATIO</p>
+
+<!-- Warunek sprawdzający dostępność danych dotyczących strzałów w głowę -->
+@if (ViewBag.HEADSHOTS == "Brak danych")
+{
+    <p>Brak danych dotyczących strzałów w głowę.</p>
+}
+else
+{
+    <p>Procent strzałów w głowę: @ViewBag.HEADSHOTS %</p>
+}
+<!-- Warunek sprawdzający dostępność danych dotyczących zabójstw otwierających -->
+@if (ViewBag.ENTRYFRAGS == "Brak danych")
+{
+    <p>Brak danych dotyczących zabójstw otwierających</p>
+}
+else
+{
+    <p>Procent zabójstw otwierających: @ViewBag.ENTRYFRAGS %</p>
+}
+

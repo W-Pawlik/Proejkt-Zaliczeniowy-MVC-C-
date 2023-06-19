@@ -1,0 +1,113 @@
+﻿@model List<AnalysisProgram.Models.CsGoItemViewModel>
+
+<h2>Wpisz kupowane przedmioty:</h2>
+
+@using (Html.BeginForm("ShoppingCalculator", "ShoppingCalculator", FormMethod.Post))
+{
+    <!-- Pętla for generująca pola dla 6 przedmiotów -->
+    @for (var i = 0; i < 6; i++)
+    {
+                        <h3>Przedmiot @(i + 1)</h3>
+                        <label>Nazwa:</label>
+        @Html.TextBoxFor(m => m[i].Name)
+        @Html.ValidationMessageFor(m => m[i].Name)
+                        <br />
+
+                <label>Cena:</label>
+        @Html.TextBoxFor(m => m[i].Price)
+        @Html.ValidationMessageFor(m => m[i].Price)
+                        <br />
+
+                <label>Ilość:</label>
+        @Html.TextBoxFor(m => m[i].Quantity)
+                        <br />
+
+                <label>Rodzaj:</label>
+        @Html.DropDownListFor(m => m[i].Type, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "---", Value = "null" },
+            new SelectListItem { Text = "Broń", Value = "Weapon" },
+            new SelectListItem { Text = "Granat", Value = "Grenade" },
+
+        })
+                        <br />
+
+
+
+                    <div class="weaponFields" style="display:none;">
+                        <h4>Specyficzne pola dla broni:</h4>
+                    <label>Amunicja:</label>
+            @Html.TextBoxFor(m => m[i].Ammo)
+                            <br />
+
+                    <label>Średnie obrażenia:</label>
+            @Html.TextBoxFor(m => m[i].AvgDmgPerShot)
+                            <br />
+
+                    <label>Procent odrzutu:</label>
+            @Html.TextBoxFor(m => m[i].RecoilPercentage)
+                            <br />
+
+                    <label>Czy posiada tłumik:</label>
+            @Html.DropDownListFor(m => m[i].IsSilenced, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Posiada", Value = "True" },
+            new SelectListItem { Text = "Nie posiada", Value = "False" },
+
+        })
+                            <br />
+                            </div>
+                            <div class="grenadeFields" style="display:none;">
+                                        <h4>Specyficzne pola dla granatów:</h4>
+                    <label>Średnie obrażenia:</label>
+            @Html.TextBoxFor(m => m[i].AvgDmg)
+                            <br />
+
+                    <label>Czas trwania:</label>
+            @Html.TextBoxFor(m => m[i].Duration)
+                            <br />
+
+                    <label>Rodzaj obrażeń:</label>
+            @Html.DropDownListFor(m => m[i].DmgType, new List<SelectListItem>
+        {
+            new SelectListItem { Text = "Wybuchowe", Value = "wybuchowe" },
+            new SelectListItem { Text = "Podpalające", Value = "Podpalające" },
+            new SelectListItem { Text = "Oślepiające", Value = "Oślepiające" },
+            new SelectListItem { Text = "Zasłaniające", Value = "Zasłaniające" }
+
+        })
+
+                            </div>
+
+                        <!-- Skrypt JavaScript obsługujący zmianę typu przedmiotu -->
+                        <script>
+                            
+                           
+                            //Pobranie referencji do elementów formularza
+                            var typeInput = document.getElementById('@Html.IdFor(m => m[i].Type)');
+                            var weaponFields = document.getElementsByClassName('weaponFields');
+                            var grenadeFields = document.getElementsByClassName('grenadeFields');
+                            
+
+                            //Dodanie nasłuchiwania na zmianę wartości pola rodzaju przedmiotu
+                            typeInput.addEventListener('change', function () {
+                                //Sprawdzenie wartości pola i dostosowanie wyświetlania pól specyficznych
+                                if (this.value === 'Weapon') {
+                                    weaponFields[@i].style.display = 'block';
+                                    grenadeFields[@i].style.display = 'none';
+
+                                } else if (this.value === 'Grenade') {
+                                    grenadeFields[@i].style.display = 'block';
+                                    weaponFields[@i].style.display = 'none';
+                                        } else {
+                                    grenadeFields[@i].style.display = 'none';
+                                    weaponFields[@i].style.display = 'none';
+                                }
+                            });
+                        </script>
+
+                        <br />
+    }
+
+            <input type="submit" value="Create" />
+}

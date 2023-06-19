@@ -1,0 +1,64 @@
+﻿@model List<AnalysisProgram.Models.CsGoItem>
+
+<!-- Styl dla elementów w widoku -->
+<style>
+    .centered {
+        text-align: center;
+        font-size: 20px;
+    }
+
+    .itemSeparator {
+        border-top: 1px solid #000;
+        margin: 10px 0;
+    }
+
+    .totalPrice {
+        font-size: 24px;
+        font-weight: bold;
+    }
+</style>
+
+<div class="centered">
+    <h2>Skalkulowane zakupy</h2>
+</div>
+
+<!-- Pętla iterująca przez każdy element modelu -->
+@foreach (var item in Model)
+{
+      <!-- Div z klasą itemSeparator, oddzielający poszczególne elementy -->
+        <div class="centered itemSeparator">
+            <h3>Przedmiot </h3>
+
+             <!-- Wyświetlanie informacji o przedmiocie -->
+            <p>Nazwa: @item.Name</p>
+            <p>Cena: @item.Price</p>
+            <p>Ilość: @item.Quantity</p>
+            <p>Typ: @item.Type</p>
+            <p>Całkowita cena: @ViewBag.WeaponPrice</p>
+
+              <!-- Warunek sprawdzający typ przedmiotu -->
+        @if (item is Weapon weapon)
+        {
+             <!-- Wyświetlanie dodatkowych informacji dla broni -->
+                    <p>Amunicja: @weapon.Ammo</p>
+                    <p>Średnie obrażenia na trafiony strzał: @weapon.AvgDmgPerShot</p>
+                    <p>Procent odrzutu: @weapon.RecoilPercentage</p>
+                    <p>Czy posiada tłumik(true/false): @weapon.IsSilenced</p>
+                    <p>@ViewBag.WeaponPriceToString</p>
+        }
+        else if (item is Grenade grenade)
+        {
+             <!-- Wyświetlanie dodatkowych informacji dla granatu -->
+                    <p>Średnie obrażenia: @grenade.AvgDmg</p>
+                    <p>Czas trwania: @grenade.Duration</p>
+                    <p>Rodzaj zadawanych obrażeń: @grenade.DmgType</p>
+                    <p>@ViewBag.PriceToString</p>
+        }
+        </div>
+        <br />
+}
+
+<!-- Wyświetlanie całkowitej ceny przedmiotów -->
+<div class="centered">
+    <p class="totalPrice">Za wszystkie przedmioty zapłacisz: @ViewBag.TotalPriceOfItems</p>
+</div>

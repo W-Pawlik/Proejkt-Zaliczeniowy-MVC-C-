@@ -1,0 +1,25 @@
+﻿@model AnalysisProgram.Models.Player[]
+
+<h2>Porównanie graczy</h2>
+
+<!-- Pętla iterująca po każdym graczu z listy -->
+@foreach (var player in Model)
+{
+     <!-- Wyświetlenie informacji o każdym graczu -->
+    <h3>Gracz: @player.Name</h3>
+
+    <p>Imie: @player.Name</p>
+    <p>Naziwsko: @player.Surname</p>
+    <p>Nick: @player.Nick</p>
+    <p>Wiek: @player.Age</p>
+    <p>Cena: @player.Price</p>
+    <p>Zabójstwa: @player.Kills</p>
+    <p>Asysty: @player.Assists</p>
+    <p>Śmierci: @player.Deads</p>
+
+    <hr />
+}
+<h3>Ocena graczy</h3>
+<p>Bardziej agresywny gracz: @ViewBag.AggressivePlayer</p>
+<p>Lepiej asystujący gracz: @ViewBag.SupportPlayer</p>
+<p>Według stosunku statystyk do ceny bardziej opłąca się kupić: @ViewBag.BetterKDAPriceRatio</p>
